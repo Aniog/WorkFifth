@@ -15,13 +15,14 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import com.jnu.student.R;
 import com.jnu.student2021100175.Fragment.BaiduMapFragment;
 import com.jnu.student2021100175.Fragment.BookListFragment;
+import com.jnu.student2021100175.Fragment.ClockViewFragment;
 import com.jnu.student2021100175.Fragment.WebViewFragment;
 import com.jnu.student2021100175.data.Book;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private final String[] tabHeaderStrings = {"图书", "地图", "新闻"};
+    private final String[] tabHeaderStrings = {"图书", "地图", "新闻","钟表"};
     //BooksAdapter booksAdapter;
     ArrayList<Book> books;
     @Override
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static class FragmentAdapter extends FragmentStateAdapter {
-        private static final int NUM_TABS = 3;
+        private static final int NUM_TABS = 4;
 
         public FragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
             super(fragmentManager, lifecycle);
@@ -57,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
                     return new BaiduMapFragment();
                 case 2:
                     return new WebViewFragment();
+                case 3:
+                    return new ClockViewFragment();
                 default:
                     return null;
             }
