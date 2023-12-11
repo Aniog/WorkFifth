@@ -9,11 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.jnu.student.R;
+import com.jnu.student2021100175.data.DataDownload;
+import com.jnu.student2021100175.data.ShopLocation;
 import com.tencent.tencentmap.mapsdk.maps.CameraUpdateFactory;
 import com.tencent.tencentmap.mapsdk.maps.TencentMap;
 import com.tencent.tencentmap.mapsdk.maps.model.LatLng;
 import com.tencent.tencentmap.mapsdk.maps.model.Marker;
 import com.tencent.tencentmap.mapsdk.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
 
 
 public class BaiduMapFragment extends Fragment {
@@ -49,14 +53,38 @@ public class BaiduMapFragment extends Fragment {
         LatLng point1 = new LatLng(22.255453, 113.54145);
         tencentMap.moveCamera(CameraUpdateFactory.newLatLng(point1));
 
-        // 创建一个Marker对象
-        MarkerOptions markerOptions = new MarkerOptions(point1)
-                .title("暨南大学");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // 在新线程中执行以下代码
+                // 使用DataDownload类的实例下载JSON数据
+                String responseData = new DataDownload().download("http://file.nidama.net/class/mobile_develop/data/bookstore.json");
+                // 使用DataDownload类的方法解析下载的JSON数据并转换为ShopLocation对象的ArrayList
+                ArrayList<ShopLocation> shopLocations = new DataDownload().parseJsonObjects(responseData);
+                // 切换回主线程进行UI操作
+                requireActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        // 获取Tencent地图实例
+                        TencentMap tencentMap = mapView.getMap();
+                        // 遍历商店位置的ArrayList，为每个位置创建标记并添加到地图上
+                        for (ShopLocation shopLocation : shopLocations) {
+                            // 获取商店的经纬度信息
+                            LatLng point1 = new LatLng(shopLocation.getLatitude(), shopLocation.getLongitude());
+                            // 创建标记选项，设置标记的位置和标题
+                            MarkerOptions markerOptions = new MarkerOptions(point1)
+                                    .title(shopLocation.getName());
+                            // 在地图上添加标记
+                            Marker marker = tencentMap.addMarker(markerOptions);
+                        }
+                    }
+                });
+            }
+        }).start();
 
-        // 添加标记到地图上
-        Marker marker = tencentMap.addMarker(markerOptions);
         return rootView;
     }
+
     @Override
     public void onStart() {
         super.onStart();
