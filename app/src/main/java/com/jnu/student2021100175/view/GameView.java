@@ -14,10 +14,10 @@ import com.jnu.student2021100175.data.Spriter; // 导入 Spriter 类（假设此
 
 import java.util.ArrayList; // 导入 ArrayList 类
 
-public class GameView extends SurfaceView implements SurfaceHolder.Callback { // 创建 GameView 类并继承自 SurfaceView 类，并实现 SurfaceHolder.Callback 接口
+public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     public static int booksCollected = 10; // 记录学到的书本数
-    public GameView(Context context) { // GameView 类的构造函数，接收 Context 类型的参数
+    public GameView(Context context) {
         super(context); // 调用父类构造函数
         initView(); // 初始化视图
     }
@@ -25,7 +25,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback { //
     {
         return booksCollected;
     }
-    public GameView(Context context, AttributeSet attrs) { // GameView 类的构造函数，接收 Context 和 AttributeSet 类型的参数
+    public GameView(Context context, AttributeSet attrs) {
         super(context, attrs); // 调用父类构造函数
         initView(); // 初始化视图
     }

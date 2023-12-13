@@ -91,14 +91,7 @@ public class Spriter { // 创建 Spriter 类
         Random random = new Random();
         int h = random.nextInt(1);
         Bitmap bit = ((BitmapDrawable) context.getResources().getDrawable(R.drawable.book_1)).getBitmap();
-        /*if(h == 0)
-        {
-            bitmap = ((BitmapDrawable) context.getResources().getDrawable(R.drawable.haha1)).getBitmap(); // 获取位图资源
-        }
-        else if(h == 1)
-        {
-            bitmap = ((BitmapDrawable) context.getResources().getDrawable(R.drawable.haha2)).getBitmap(); // 获取位图资源
-        }*/
+
         mBitPaint.setFilterBitmap(true); // 设置位图过滤
         mBitPaint.setDither(true); // 设置抖动
         //canvas.drawBitmap(bitmap, getX(), getY(), mBitPaint); // 在画布上绘制位图
