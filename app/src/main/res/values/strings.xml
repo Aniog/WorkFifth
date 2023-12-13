@@ -7,6 +7,8 @@
     <string name="change_text">交换文本</string>
     <string name="string_book">书本名字:</string>
     <string name="string_ok">ok</string>
+    <string name="jieshu">结束</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_game">GameActivity</string>
 </resources>

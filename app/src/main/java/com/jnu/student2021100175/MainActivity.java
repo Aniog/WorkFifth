@@ -16,13 +16,14 @@ import com.jnu.student.R;
 import com.jnu.student2021100175.Fragment.BaiduMapFragment;
 import com.jnu.student2021100175.Fragment.BookListFragment;
 import com.jnu.student2021100175.Fragment.ClockViewFragment;
+import com.jnu.student2021100175.Fragment.GameViewFragment;
 import com.jnu.student2021100175.Fragment.WebViewFragment;
 import com.jnu.student2021100175.data.Book;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private final String[] tabHeaderStrings = {"图书", "地图", "新闻","钟表"};
+    private final String[] tabHeaderStrings = {"图书", "地图", "新闻","钟表","游戏"};
     //BooksAdapter booksAdapter;
     ArrayList<Book> books;
     @Override
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static class FragmentAdapter extends FragmentStateAdapter {
-        private static final int NUM_TABS = 4;
+        private static final int NUM_TABS = 5;
 
         public FragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
             super(fragmentManager, lifecycle);
@@ -60,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
                     return new WebViewFragment();
                 case 3:
                     return new ClockViewFragment();
+                case 4:
+                    return new GameViewFragment();
                 default:
                     return null;
             }
